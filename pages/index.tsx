@@ -15,6 +15,7 @@ export default function Home() {
         <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5"/>
         <meta name="msapplication-TileColor" content="#da532c"/>
         <meta name="theme-color" content="#ffffff"/>
+        <meta name="facebook-domain-verification" content="k7653q8k5eoevfxnls44aeafvb8pun" />
       </Head>
 
       <main className={styles.main}>
