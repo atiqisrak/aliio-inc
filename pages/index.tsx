@@ -73,7 +73,9 @@ export default function Home() {
           ><Image src="/Aliio_official.png" alt="Aliio Official Logo" width={64} height={64} />
           </a>
         </span>
-        <!-- Messenger Chat Plugin Code -->
+
+      </footer>
+      <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
 
     <!-- Your Chat Plugin code -->
@@ -103,7 +105,7 @@ export default function Home() {
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
-      </footer>
     </div>
+    
   )
 }
