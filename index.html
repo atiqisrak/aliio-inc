@@ -68,7 +68,7 @@
                   display: none;
               }
               video::-webkit-media-controls-fullscreen-button , video::-webkit-media-controls-picture-in-picture-button {
-                display: none;
+                display: true;
               }
               
               video::-webkit-media-controls-current-time-display, video::-webkit-media-controls-time-remaining-display, video::-webkit-media-controls-play-button, video::-webkit-media-controls-big-play-button{
@@ -122,7 +122,10 @@
               <div class="bgimage" id="poster">
               <img src="https://ss247.life/api/ba8dc11afad30795e5ab25f06bfa50d0b0919653/Loader.gif">
               </div>
-              <video id="video" class="zoomed_mode video-js vjs" controls="" muted="" autoplay="" playsinline="" disablepictureinpicture="" controlslist="nodownload" src="blob:https://ss247.life/1affd101-6fb1-4bd7-866d-4ce1eec84ccc" __idm_id__="3416065"></video>
+              <video id="video" class="zoomed_mode video-js vjs" 
+              controls="controls" muted="false" autoplay="true" 
+              playsinline="" disablepictureinpicture="" 
+              controlslist="nodownload" src="blob:https://ss247.life/1affd101-6fb1-4bd7-866d-4ce1eec84ccc"></video>
               
               
               <script>
