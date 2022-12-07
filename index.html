@@ -36,15 +36,192 @@
             </div>
         </div> -->
         <div class="dhuru">
-            <div class="match_title">
-                <h1>Watch Bangladesh vs India 🔴LIVE</h1>
-            </div>
-            <div class="watchmatch" data-container="">
-                <iframe class="embed-responsive-item" src="https://ss247.life/api/ba8dc11afad30795e5ab25f06bfa50d0b0919653/Nstreamapi.php?chid=1030&ip=137.59.51.17" 
-                allowfullscreen="yes" 
-                preload="metadata" 
-                width="720px" height="480px"></iframe>
-            </div>
+            <h1>Watch Bangladesh vs India 🔴LIVE</h1>
+            <html><head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               <!--<script src="https://cdn.jsdelivr.net/npm/hls.js@1.0.4"></script>-->
+               <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+                <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.0.3/hls.js"></script> -->
+                <link href="https://unpkg.com/video.js@7.13.3/dist/video-js.css" rel="stylesheet">
+                <!--<script src=""></script> -->
+                <!--<script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script>-->
+                <style>
+                
+                body{
+                background-color:black;
+                margin: 0px;
+                padding: 0px;
+              }
+              
+              .zoomed_mode{
+                position: relative;
+                top: 0px;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+                margin: auto;
+                max-height: 100%;
+                width: 100%;
+              }
+              video::-webkit-media-controls-timeline {
+                  display: none;
+              }
+              video::-webkit-media-controls-fullscreen-button , video::-webkit-media-controls-picture-in-picture-button {
+                display: none;
+              }
+              
+              video::-webkit-media-controls-current-time-display, video::-webkit-media-controls-time-remaining-display, video::-webkit-media-controls-play-button, video::-webkit-media-controls-big-play-button{
+                  display: none;
+              }
+              
+              audio::-webkit-media-controls-mute-button, video::-webkit-media-controls-mute-button {
+                  -webkit-appearance: media-mute-button;
+                  display: flex;
+                  width: 16px;
+                  height: 16px;
+                  background-color: none;
+                  border: initial;
+                  color: inherit;
+              }
+              video::-webkit-media-controls-panel {
+                
+                background-image: linear-gradient(transparent, transparent) !important; 
+              
+              }
+              video::-webkit-media-controls {
+                   visibility: hidden;
+              }
+              
+              video::-webkit-media-controls-enclosure {
+                   visibility: visible;
+              }
+              video::-webkit-media-controls-overlay-play-button {
+                display: none;
+              }
+              .hide{
+                  display: none;
+              }
+              .bgimage{
+                  width: 100%;
+                  height: 100%;
+                  position: fixed;
+                  left: 0px;
+                  top: 0px;
+                  z-index: -1;
+              }
+              .bgimage img{
+                  width: 100%;
+                  height: 100%;
+              }
+              
+                </style>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+              </head>
+              <body>
+              <div class="bgimage" id="poster">
+              <img src="https://ss247.life/api/ba8dc11afad30795e5ab25f06bfa50d0b0919653/Loader.gif">
+              </div>
+              <video id="video" class="zoomed_mode video-js vjs" controls="" muted="" autoplay="" playsinline="" disablepictureinpicture="" controlslist="nodownload" src="blob:https://ss247.life/1affd101-6fb1-4bd7-866d-4ce1eec84ccc" __idm_id__="3416065"></video>
+              
+              
+              <script>
+              var config = {
+                    autoStartLoad: true,
+                    startPosition: -1,
+                    liveDurationInfinity: true,
+                    // liveSyncDuration: 5,
+                    // liveMaxLatencyDuration: 6
+                };
+              </script>
+              <script>
+              // setTimeout(function(){ 
+              // $('#poster').addClass('hide');
+              // $('#video').removeClass('hide');
+              // }, 5000);
+                var video = document.getElementById('video');
+                    
+                              var stream_url = 'https://721242022-worldstream.com.ua/1030/index.m3u8?user=ba8dc11afad30795e5ab25f06bfa50d0b0919653&token=613ac739d06ba8c2bcaad62c647b044326ef9f21-7561eee6f9d0ae4b435f373e1999e8de-1670408810-1670398010&ip=137.59.51.17';
+                    
+                              var stream_url2 = 'https://721242022-worldstream.com.ua/1030/index.m3u8?user=ba8dc11afad30795e5ab25f06bfa50d0b0919653&token=613ac739d06ba8c2bcaad62c647b044326ef9f21-7561eee6f9d0ae4b435f373e1999e8de-1670408810-1670398010&ip=137.59.51.17';
+                  
+                      
+                              
+                
+                var ctry = 0;
+                var maxtry = 3;
+              
+                if(Hls.isSupported()) {
+                  var hls = new Hls(config);
+              
+                  hls.on(Hls.Events.ERROR, function(event,data) {
+                    var  msg = "Player error: Type:" + data.type + " - Details:" + data.details + " - Fatal: " + data.fatal + " - Count: " +ctry;
+                    console.error(msg);
+              
+                    if( data.details == 'bufferAddCodecError') {
+                      location.reload();
+                      return;
+                    }
+                    
+                    if(data.fatal) {
+                      switch(data.type) {
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                          handleMediaError(hls);
+                          break;
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                           console.error("network error ... 404 ctr: "+ctry);
+                           if(ctry < maxtry) {
+                            ctry++
+                            setTimeout(() => hlsTryLoad(), 1000);
+                           } else {
+                            //window.top.location.reload();
+                            location.reload();
+                            return;
+                           }            
+                          break;
+                        default:
+                          console.error("unrecoverable error");
+                          hls.destroy();
+                          location.reload();
+                          return;
+                          break;
+                      }
+                    }
+                   });
+              
+                  hls.loadSource(stream_url);
+                  hls.attachMedia(video);
+                  hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                    //video.play();
+                });
+               }
+               // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+               // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element through the `src` property.
+               // This is using the built-in support of the plain video element, without using hls.js.
+               // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
+               // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
+                else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                  video.src = stream_url2;
+                
+                  video.addEventListener('loadedmetadata',function() {
+                    video.play();
+                  });
+                }
+              
+                 function hlsTryLoad() {
+                    console.error("re-connecting....");
+                    hls.loadSource(stream_url);
+                    hls.startLoad();
+                  }
+              </script>
+              
+              
+              
+                
+              
+              
+              
+              </body></html>
         </div>
         <!-- https://ss247.life/api/ba8dc11afad30795e5ab25f06bfa50d0b0919653/Nstreamapi.php?chid=1030&ip=137.59.51.17 -->
     </main>
